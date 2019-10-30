@@ -105,6 +105,174 @@
   
     <article class="post">
       <div class="post-meta">
+        <span class="post-time">2019-10-16</span>
+      </div>
+      <div class="post-title">
+        
+          <a class="post-title-link" href="/2019/10/16/MySQL总结/">
+            
+              MySQL总结
+            
+          </a>
+          
+        
+        <div class="post-tags">
+          
+        </div>
+      </div>
+      <div class="post-content">
+
+        
+
+        
+        <h1 id="MySQL总结"><a href="#MySQL总结" class="headerlink" title="MySQL总结"></a>MySQL总结</h1><h4 id="第1章，MySQL基础"><a href="#第1章，MySQL基础" class="headerlink" title="第1章，MySQL基础"></a>第1章，MySQL基础</h4><img src="C:\Users\胡文园\Desktop\MYSQL.png" style="zoom:80%;">
+
+
+
+<h6 id="1，数据库编码不区分大小写，通常数据库内置的关键词大写，自定义的小写。"><a href="#1，数据库编码不区分大小写，通常数据库内置的关键词大写，自定义的小写。" class="headerlink" title="1，数据库编码不区分大小写，通常数据库内置的关键词大写，自定义的小写。"></a>1，数据库编码不区分大小写，通常数据库内置的关键词大写，自定义的小写。</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE stuinfo(stuno INT,name VARCHAR(255));</span><br></pre></td></tr></table></figure>
+
+<h6 id="2-专有名词：数据库，数据表，记录（一行数据-record），字段（一列数据field）。"><a href="#2-专有名词：数据库，数据表，记录（一行数据-record），字段（一列数据field）。" class="headerlink" title="2.专有名词：数据库，数据表，记录（一行数据 record），字段（一列数据field）。"></a>2.专有名词：数据库，数据表，记录（一行数据 record），字段（一列数据field）。</h6><h6 id="3-修改表结构"><a href="#3-修改表结构" class="headerlink" title="3.修改表结构"></a>3.修改表结构</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名+动作</span><br></pre></td></tr></table></figure>
+
+<h5 id="动作："><a href="#动作：" class="headerlink" title="动作："></a>动作：</h5><p>修改表名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 rename 新表名</span><br></pre></td></tr></table></figure>
+
+<p>修改字段类型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 modify 字段名 新类型</span><br></pre></td></tr></table></figure>
+
+<p>修改字段名字：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 change 老字段名 新字段名 新类型</span><br></pre></td></tr></table></figure>
+
+<p>添加字段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 add 新字段名 新字段类型</span><br></pre></td></tr></table></figure>
+
+<p>删除字段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 drop 字段名</span><br></pre></td></tr></table></figure>
+
+<p>创建数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database 数据库名</span><br></pre></td></tr></table></figure>
+
+<p>eg：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">create database schooldb;</span><br><span class="line">use schooldb;</span><br></pre></td></tr></table></figure>
+
+<p>创建数据表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create table 表名；</span><br></pre></td></tr></table></figure>
+
+<p>eg:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create table 表名 (stuno int,name varchar(255));</span><br></pre></td></tr></table></figure>
+
+<p>显示stuinfo的结构信息，显示stuinfo的创建信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">desc stuinfo;</span><br><span class="line">show create table stuinfo;</span><br></pre></td></tr></table></figure>
+
+<p>修改表名stuinfo为stuinfo18；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table stuinfo rename stuinfo18;</span><br></pre></td></tr></table></figure>
+
+<p>修改姓名字段name 类型为字符串（4）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table stuinfo modify name varchar(4);</span><br></pre></td></tr></table></figure>
+
+<p>修改姓名字段name名称为stuname</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table stuinfo change name stuname varchar(4);</span><br></pre></td></tr></table></figure>
+
+<p>添加地址字段address 类型为字符串(255)；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 add address varchar(255);</span><br></pre></td></tr></table></figure>
+
+<p>删除地址字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 drop address;</span><br></pre></td></tr></table></figure>
+
+<p>删除学生信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop table 表名</span><br></pre></td></tr></table></figure>
+
+<h2 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2><h6 id="1，数据约束：主键，外键，非空，默认，唯一。"><a href="#1，数据约束：主键，外键，非空，默认，唯一。" class="headerlink" title="1，数据约束：主键，外键，非空，默认，唯一。"></a>1，数据约束：主键，外键，非空，默认，唯一。</h6><p>（1，主键：primary key 写在字段类型后面。</p>
+<p>​         主键特性：非空且唯一</p>
+<p>​         主键自增：auto_increment写在字段类型后面，主键前面</p>
+<p>​                           …… auto_increment primary key;</p>
+<p>(2,外键：从表的外键，必须在主表的主键中出现</p>
+<p>​               写在创建语句后面</p>
+<p>​           foreign  key  (字段名)  references  主表名  (字段名);</p>
+<p>eg:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create table 表名(id int auto_increment pri mary key,stuno int,score float,foreign key (stuno) references stuinfo (stuno));</span><br></pre></td></tr></table></figure>
+
+<p>（3,非空：not null写在字段类型后面</p>
+<p>（4,默认： default默认值，如果默认值是字符的，需要将字符加单引号。</p>
+<p>（5， 唯一：unique 写在字段类型后面</p>
+<h4 id="2，数据库设计规范"><a href="#2，数据库设计规范" class="headerlink" title="2，数据库设计规范"></a>2，数据库设计规范</h4><p>INF  ：一范式数据字段，具有原子性，不可再分。</p>
+<p>2INF ：二范式所有字段要和主键相关（要有主键）。</p>
+<p>2INF ：三范式所有字段要和主键直接相关（要有外键，分表）。</p>
+<p><font color="red">注意<font></font></font></p>
+<h2 id="第三章数据增删改"><a href="#第三章数据增删改" class="headerlink" title="第三章数据增删改"></a>第三章数据增删改</h2><p>1，数据插入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into 表名(字段1，字段2，...) values(值1，值2...);</span><br></pre></td></tr></table></figure>
+
+<p>eg:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into 表名（id,stuno,name,age） values(&apos;01&apos;,&apos;张三&apos;,17);</span><br></pre></td></tr></table></figure>
+
+<p>2，最简单的查询语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from 表名;</span><br></pre></td></tr></table></figure>
+
+<p><font color="red">注意<font>:注意：主键自增，只增不减。</font></font></p>
+<p>3简写形式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">insert 表名（字段1，字段2...） values(值1，值2...);</span><br></pre></td></tr></table></figure>
+
+<p>4，最精简形式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert 表名 values（值1，值2...）;</span><br></pre></td></tr></table></figure>
+
+<p>eg:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert 表名 values(20,&apos;aaa&apos;,12)；</span><br></pre></td></tr></table></figure>
+
+<p>5，一次插入的多行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into 表名（字段1，字段2，....） values（值1，值2,...）,(值1，值2,...);</span><br></pre></td></tr></table></figure>
+
+<p>6，运算符</p>
+<p> 比较运算符 =<br> 逻辑运算符 “&amp;&amp;”，“||”，“！”或and，or，！；<br>not null 住址！=‘洛阳’;</p>
+<p>7,更新语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">语法：update 表名 set 字段1=值1，字段2=值2，....where 条件;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">eg:update 表名 set nation=&apos;蒙古族&apos;,where id=1;</span><br></pre></td></tr></table></figure>
+
+<p>8,删除语句，有外键约束的，先删从表，再删主表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from 表名 where 条件；</span><br></pre></td></tr></table></figure>
+
+<p>9，清空表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">truncate table 表名；</span><br></pre></td></tr></table></figure>
+
+<p>truncate和delete的区别<br>（1），truncate 将清空日志，数据不可恢复；<br>（2），truncate将重置自增列<br>（3），truncate不可清空有外键约束的表</p>
+<h2 id="第四章-数据查询"><a href="#第四章-数据查询" class="headerlink" title="第四章 数据查询"></a>第四章 数据查询</h2><p>1，select 字段1，字段2，….from 表名  where  条件  order by 字段1，字段2，…limit 数字1，数字2</p>
+<p>使用 * 作为通配符，表示所有字段。</p>
+<p>2,查看表格</p>
+<p>eg：（1），select * from 表名；即可实现<br>（2），select name,nation,class from 表名;</p>
+<p>3,使用as 关键词，进行字段重命名，都是临时的重命名，只对本次有效。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select name as 姓名，nation as 民族 from 表名；</span><br></pre></td></tr></table></figure>
+
+<p>3,永久性重命名字段（第二章内容）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 change 旧字段名 新字段名 字段类型；</span><br></pre></td></tr></table></figure>
+
+<p>4,按条件查询信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from 表名 where class=&apos;移动1班&apos; and gender=&apos;女&apos;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from 表名 where class=&apos;移动1班&apos;and (nation=‘汉族’ or nation=‘朝鲜族’);</span><br></pre></td></tr></table></figure>
+
+<p>8,使用distinct 关键词，查询不重复的记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select distinct nation from 表名;</span><br></pre></td></tr></table></figure>
+
+<p>9,排序</p>
+<p>逻辑运算的优先级是非与或 ！ and or;<br>使用order by 关键词进行排序；<br>order by 字段 asc/desc<br>asc表示升序，可以省略，   desc 表示降序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eg：select * from 表名 order by score;升序。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from 表名 order by score desc;降序</span><br></pre></td></tr></table></figure>
+
+<p>10,取前3名学生成绩</p>
+<p>使用limit关键词，限制行数</p>
+<p>limit n,m  从n+1行开始取，取m行，limit m，相当于limit 0，m，从0行计数。</p>
+<p>11，函数</p>
+<p>（1）rand（） 取0-1之间的随机数，取不到0和1.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">语法：select  rand（）；</span><br></pre></td></tr></table></figure>
+
+<p>（2）ceil （）向上取整<br>     floor（）向下取整；<br>  ceil（rand（）<em>43）；<br>eg：select ceil （rand（）</em>43）；</p>
+
+        
+      </div>
+    </article>
+  
+    <article class="post">
+      <div class="post-meta">
         <span class="post-time">2019-10-14</span>
       </div>
       <div class="post-title">
