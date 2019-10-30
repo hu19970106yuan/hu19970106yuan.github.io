@@ -105,6 +105,65 @@
   
     <article class="post">
       <div class="post-meta">
+        <span class="post-time">2019-10-30</span>
+      </div>
+      <div class="post-title">
+        
+          <a class="post-title-link" href="/2019/10/30/Mysql总结下部/">
+            
+              Mysql总结下部
+            
+          </a>
+          
+        
+        <div class="post-tags">
+          
+        </div>
+      </div>
+      <div class="post-content">
+
+        
+
+        
+        <h2 id="第四章-数据查询"><a href="#第四章-数据查询" class="headerlink" title="第四章 数据查询"></a>第四章 数据查询</h2><p>1，select 字段1，字段2，….from 表名  where  条件  order by 字段1，字段2，…limit 数字1，数字2</p>
+<p>使用 * 作为通配符，表示所有字段。</p>
+<p>2,查看表格</p>
+<p>eg：（1），select * from 表名；即可实现<br>（2），select name,nation,class from 表名;</p>
+<p>3,使用as 关键词，进行字段重命名，都是临时的重命名，只对本次有效。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select name as 姓名，nation as 民族 from 表名；</span><br></pre></td></tr></table></figure>
+
+<p>3,永久性重命名字段（第二章内容）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 change 旧字段名 新字段名 字段类型；</span><br></pre></td></tr></table></figure>
+
+<p>4,按条件查询信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from 表名 where class=&apos;移动1班&apos; and gender=&apos;女&apos;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from 表名 where class=&apos;移动1班&apos;and (nation=‘汉族’ or nation=‘朝鲜族’);</span><br></pre></td></tr></table></figure>
+
+<p>8,使用distinct 关键词，查询不重复的记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select distinct nation from 表名;</span><br></pre></td></tr></table></figure>
+
+<p>9,排序</p>
+<p>逻辑运算的优先级是非与或 ！ and or;<br>使用order by 关键词进行排序；<br>order by 字段 asc/desc<br>asc表示升序，可以省略，   desc 表示降序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eg：select * from 表名 order by score;升序。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from 表名 order by score desc;降序</span><br></pre></td></tr></table></figure>
+
+<p>10,取前3名学生成绩</p>
+<p>使用limit关键词，限制行数</p>
+<p>limit n,m  从n+1行开始取，取m行，limit m，相当于limit 0，m，从0行计数。</p>
+<p>11，函数</p>
+<p>（1）rand（） 取0-1之间的随机数，取不到0和1.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">语法：select  rand（）；</span><br></pre></td></tr></table></figure>
+
+<p>（2）ceil （）向上取整<br>     floor（）向下取整；<br>  ceil（rand（）<em>43）；<br>eg：select ceil （rand（）</em>43）；</p>
+
+        
+      </div>
+    </article>
+  
+    <article class="post">
+      <div class="post-meta">
         <span class="post-time">2019-10-16</span>
       </div>
       <div class="post-title">
