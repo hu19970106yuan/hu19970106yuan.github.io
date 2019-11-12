@@ -1,0 +1,163 @@
+<html>
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+  <title>Hexo</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="/lib/jquery.js"></script>
+  <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
+  <script src="/js/common.js"></script>
+  <script src="/lib/bootstrap/js/bootstrap.js"></script>
+  <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+</head>
+
+  <body>
+    <header class="header">
+  <div class="color-bar">
+    <ul>
+      <li class="bar1"></li>
+      <li class="bar2"></li>
+      <li class="bar3"></li>
+      <li class="bar4"></li>
+      <li class="bar5"></li>
+      <li class="bar6"></li>
+    </ul>
+  </div>
+  <div class="header-wrapper">
+    <div class="blog-title">
+      
+        <img class="logo" src="/images/logo.png" alt="logo">
+      
+      <a href="/" class="title">Hexo</a>
+    </div>
+    <nav class="navbar navbar-menu">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" id="nav-btn" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+      </div>
+        <ul class="menu menu-pc">
+          
+            <li class="menu-item">
+              <a href="/" class="menu-item-link"><i class="fa fa-home"></i><span>首页</span></a>
+            </li>
+          
+            <li class="menu-item">
+              <a href="/tags/" class="menu-item-link"><i class="fa fa-tags"></i><span>Tags</span></a>
+            </li>
+          
+            <li class="menu-item">
+              <a href="/archives/" class="menu-item-link"><i class="fa fa-file"></i><span>归档</span></a>
+            </li>
+          
+            <li class="menu-item">
+              <a href="https://github.com/littleee/" class="menu-item-link"><i class="fa fa-github"></i><span>github</span></a>
+            </li>
+          
+        </ul>
+    </nav>
+  </div>
+</header>
+<div class="collapse nav-collapse" style="position:fixed;top:59px;" id="bs-example-navbar-collapse-1">
+  <ul class="menu menu-mobile" style="list-style:none">
+    
+      <li class="menu-item">
+        <a href="/" class="menu-item-link"><i class="fa fa-home"></i><span>首页</span></a>
+      </li>
+    
+      <li class="menu-item">
+        <a href="/tags/" class="menu-item-link"><i class="fa fa-tags"></i><span>Tags</span></a>
+      </li>
+    
+      <li class="menu-item">
+        <a href="/archives/" class="menu-item-link"><i class="fa fa-file"></i><span>归档</span></a>
+      </li>
+    
+      <li class="menu-item">
+        <a href="https://github.com/littleee/" class="menu-item-link"><i class="fa fa-github"></i><span>github</span></a>
+      </li>
+    
+  </ul>
+</div>
+
+    <main class="main">
+      <div class="content">
+        
+  <article class="post">
+    <div class="post-title">
+      <h2 class="title">eslipse配置数据库连接池</h2>
+       
+    </div>
+     <div class="post-meta">
+      <span class="post-time">2019-11-11</span>
+    </div>
+    <div class="post-content">
+      <p>Tomcat6的服务器配置文件放在 ${tomcat6}/conf 目录底下。我们可以在这里找到 server.xml 和 context.xml。当然，还有其他一些资源文件。但是在在本文中我们只用得上这两个，其他的就不介绍了。 </p>
+<h2 id="1-添加jar包"><a href="#1-添加jar包" class="headerlink" title="1.添加jar包"></a>1.添加jar包</h2><p>首先，将数据库的驱动程序copy到tomcat8.0\lib下，这一部是关键，如果没有copy 当运行程序的时候后报-找不到驱动-的异常。</p>
+<h2 id="2-在context文件中添加"><a href="#2-在context文件中添加" class="headerlink" title="2.在context文件中添加"></a>2.在context文件中添加</h2><p>将下面的代码放到Tomcat 8.0\conf\context.xml中间，如：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;Context reloadable=<span class="string">"true"</span>&gt;</span><br><span class="line">&lt;Resource </span><br><span class="line">name=<span class="string">"jdbc/数据库名"</span></span><br><span class="line">type=<span class="string">"javax.sql.DataSource"</span></span><br><span class="line">maxActive=<span class="string">"100"</span></span><br><span class="line">maxIdle=<span class="string">"30"</span> </span><br><span class="line">maxWait=<span class="string">"5000"</span></span><br><span class="line">username=<span class="string">"用户名"</span></span><br><span class="line">password=<span class="string">"密码"</span></span><br><span class="line">driverClassName=<span class="string">"数据库的驱动"</span></span><br><span class="line">url=<span class="string">"数据库的连接地址"</span> /&gt;</span><br><span class="line">&lt;/Context&gt;</span><br></pre></td></tr></table></figure>
+
+<p>也可以在项目root下的WEB-INF下新建context.xml进行配置</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span><br><span class="line"></span><br><span class="line">&lt;Context&gt;<span class="comment">/////直连 </span></span><br><span class="line">&lt;Resource </span><br><span class="line">name=<span class="string">"jdbc/book"</span> </span><br><span class="line">type=<span class="string">"javax.sql.DataSource"</span> </span><br><span class="line">password=<span class="string">""</span></span><br><span class="line">driverClassName=<span class="string">"com.microsoft.jdbc.sqlserver.SQLServerDriver"</span></span><br><span class="line">maxIdle=<span class="string">"5"</span> </span><br><span class="line">maxWait=<span class="string">"5000"</span></span><br><span class="line">username=<span class="string">"sa"</span> </span><br><span class="line">url=<span class="string">"jdbc:microsoft:sqlserver://localhost:1433;databaseName=book"</span><span class="comment">////直连数据源 maxActive="10"/&gt; </span></span><br><span class="line">&lt;/Context&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-通过JNDI资源链接"><a href="#3-通过JNDI资源链接" class="headerlink" title="3.通过JNDI资源链接"></a>3.通过JNDI资源链接</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">InitialContext initCtx = <span class="keyword">new</span> InitialContext();</span><br><span class="line">DataSource ds = (DataSource)initCtx.lookup(<span class="string">"java:comp/env/jdbc/数据库名"</span>);</span><br><span class="line">Connection conn = ds.getConnection();</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+  </article>
+  <div class="post-nav">
+    <div class="post-nav-next post-nav-item">
+      
+        <a href="/2019/11/05/JSP中的request,session,response对象以及其他对象/" rel="next" title="">
+          <i class="fa fa-chevron-left"></i> 
+        </a>
+      
+    </div>
+
+    <span class="post-nav-divider"></span>
+
+    <div class="post-nav-prev post-nav-item">
+    
+        <a href="/2019/11/12/js前部分总结/" rel="prev" title="">
+           <i class="fa fa-chevron-right"></i>
+        </a>
+      
+    </div>
+  </div>
+
+
+
+      </div>
+        <div class="footer">
+  <div class="footer-wrapper">
+    <div class="copyright">
+      
+      <span>&copy;</span>
+      
+      <span>2017 - 2019</span>
+      
+      <span class="author"><i class="fa fa-user"></i>John Doe</span>
+    </div>
+    
+      <span>Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> </span>
+    
+    
+      <span>|</span> <span>Theme - <a href="https://github.com/littleee/corazon">Corazon</a></span>
+      
+        <span>v1.0.0</span>
+      
+    
+  </div>
+</div>
+
+    </main>
+  </body>
+</html>

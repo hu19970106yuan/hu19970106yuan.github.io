@@ -1,0 +1,165 @@
+<html>
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+  <title>Hexo</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="/lib/jquery.js"></script>
+  <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
+  <script src="/js/common.js"></script>
+  <script src="/lib/bootstrap/js/bootstrap.js"></script>
+  <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+</head>
+
+  <body>
+    <header class="header">
+  <div class="color-bar">
+    <ul>
+      <li class="bar1"></li>
+      <li class="bar2"></li>
+      <li class="bar3"></li>
+      <li class="bar4"></li>
+      <li class="bar5"></li>
+      <li class="bar6"></li>
+    </ul>
+  </div>
+  <div class="header-wrapper">
+    <div class="blog-title">
+      
+        <img class="logo" src="/images/logo.png" alt="logo">
+      
+      <a href="/" class="title">Hexo</a>
+    </div>
+    <nav class="navbar navbar-menu">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" id="nav-btn" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+      </div>
+        <ul class="menu menu-pc">
+          
+            <li class="menu-item">
+              <a href="/" class="menu-item-link"><i class="fa fa-home"></i><span>首页</span></a>
+            </li>
+          
+            <li class="menu-item">
+              <a href="/tags/" class="menu-item-link"><i class="fa fa-tags"></i><span>Tags</span></a>
+            </li>
+          
+            <li class="menu-item">
+              <a href="/archives/" class="menu-item-link"><i class="fa fa-file"></i><span>归档</span></a>
+            </li>
+          
+            <li class="menu-item">
+              <a href="https://github.com/littleee/" class="menu-item-link"><i class="fa fa-github"></i><span>github</span></a>
+            </li>
+          
+        </ul>
+    </nav>
+  </div>
+</header>
+<div class="collapse nav-collapse" style="position:fixed;top:59px;" id="bs-example-navbar-collapse-1">
+  <ul class="menu menu-mobile" style="list-style:none">
+    
+      <li class="menu-item">
+        <a href="/" class="menu-item-link"><i class="fa fa-home"></i><span>首页</span></a>
+      </li>
+    
+      <li class="menu-item">
+        <a href="/tags/" class="menu-item-link"><i class="fa fa-tags"></i><span>Tags</span></a>
+      </li>
+    
+      <li class="menu-item">
+        <a href="/archives/" class="menu-item-link"><i class="fa fa-file"></i><span>归档</span></a>
+      </li>
+    
+      <li class="menu-item">
+        <a href="https://github.com/littleee/" class="menu-item-link"><i class="fa fa-github"></i><span>github</span></a>
+      </li>
+    
+  </ul>
+</div>
+
+    <main class="main">
+      <div class="content">
+        
+  <article class="post">
+    <div class="post-title">
+      <h2 class="title">Android基本布局</h2>
+       
+    </div>
+     <div class="post-meta">
+      <span class="post-time">2019-11-03</span>
+    </div>
+    <div class="post-content">
+      <h1 id="Android-基本布局"><a href="#Android-基本布局" class="headerlink" title="Android 基本布局"></a>Android 基本布局</h1><h3 id="基本理论"><a href="#基本理论" class="headerlink" title="基本理论"></a>基本理论</h3><p>Android六大基本布局分别是：线性布局LinearLayout、表格布局TableLayout、相对布局RelativeLayout、<br>层布局FrameLayout、绝对布局AbsoluteLayout、网格布局GridLayout。<br>其中，表格布局是线性布局的子类。网格布局是android 4.0后新增的布局。<br>在手机程序设计中，绝对布局基本上不用，用得相对较多的是线性布局和相对布局。</p>
+<p>这篇文章主要讲线性布局和相对布局</p>
+<h4 id="1-线性布局"><a href="#1-线性布局" class="headerlink" title="1.线性布局"></a>1.线性布局</h4><p>线性布局在开发中使用最多，具有垂直方向与水平方向的布局方式，通过设置属性“android:orientation”控制方向，属性值垂直（vertical）和水平(horizontal)，默认水平方向。</p>
+<h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><p>android:gravity：内部控件对齐方式，常用属性值有center、center_vertical、center_horizontal、top、bottom、left、right等。</p>
+<p>这个属性在布局组件RelativeLayout、TableLayout中也有使用，FrameLayout、AbsoluteLayout则没有这个属性。</p>
+<p>center：居中显示，这里并不是表示显示在LinearLayout的中心，当LinearLayout线性方向为垂直方向时，center表示水平居中，但是并不能垂直居中，此时等同于center_horizontal的作用；同样当线性方向为水平方向时，center表示垂直居中，等同于center_vertical。</p>
+<p>top、bottom、left、right顾名思义为内部控件居顶、低、左、右布局。<br>这里要与android:layout_gravity区分开，layout_gravity是用来设置自身相对于父元素的布局。</p>
+<p>android:layout_weight：权重，用来分配当前控件在剩余空间的大小。使用权重一般要把分配该权重方向的长度设置为零，比如在水平方向分配权重，就把width设置为零。</p>
+<h3 id="2-相对布局"><a href="#2-相对布局" class="headerlink" title="2.相对布局"></a>2.相对布局</h3><p>相对布局可以让子控件相对于兄弟控件或父控件进行布局，可以设置子控件相对于兄弟控件或父控件进行上下左右对齐。<br>RelativeLayout能替换一些嵌套视图，当我们用LinearLayout来实现一个简单的布局但又使用了过多的嵌套时，就可以考虑使用RelativeLayout重新布局。<br>相对布局就是一定要加Id才能管理。</p>
+<h4 id="RelativeLayout中子控件常用属性："><a href="#RelativeLayout中子控件常用属性：" class="headerlink" title="RelativeLayout中子控件常用属性："></a>RelativeLayout中子控件常用属性：</h4><p>1、相对于父控件，例如：android:layout_alignParentTop=“true”<br>android:layout_alignParentTop   控件的顶部与父控件的顶部对齐;<br>android:layout_alignParentBottom 控件的底部与父控件的底部对齐;<br>android:layout_alignParentLeft   控件的左部与父控件的左部对齐;<br>android:layout_alignParentRight   控件的右部与父控件的右部对齐;</p>
+<p>2、相对给定Id控件，例如：android:layout_above=“@id/**”<br>android:layout_above 控件的底部置于给定ID的控件之上;<br>android:layout_below   控件的底部置于给定ID的控件之下;<br>android:layout_toLeftOf  控件的右边缘与给定ID的控件左边缘对齐;<br>android:layout_toRightOf 控件的左边缘与给定ID的控件右边缘对齐;<br>android:layout_alignBaseline 控件的baseline与给定ID的baseline对齐;<br>android:layout_alignTop    控件的顶部边缘与给定ID的顶部边缘对齐;<br>android:layout_alignBottom  控件的底部边缘与给定ID的底部边缘对齐;<br>android:layout_alignLeft    控件的左边缘与给定ID的左边缘对齐;<br>android:layout_alignRight   控件的右边缘与给定ID的右边缘对齐;</p>
+<p>3、居中，例如：android:layout_centerInParent=“true”<br>android:layout_centerHorizontal 水平居中;<br>android:layout_centerVertical  垂直居中;<br>android:layout_centerInParent 父控件的中央;</p>
+
+    </div>
+  </article>
+  <div class="post-nav">
+    <div class="post-nav-next post-nav-item">
+      
+        <a href="/2019/10/31/JSP总结下/" rel="next" title="">
+          <i class="fa fa-chevron-left"></i> 
+        </a>
+      
+    </div>
+
+    <span class="post-nav-divider"></span>
+
+    <div class="post-nav-prev post-nav-item">
+    
+        <a href="/2019/11/05/JSP总结3/" rel="prev" title="">
+           <i class="fa fa-chevron-right"></i>
+        </a>
+      
+    </div>
+  </div>
+
+
+
+      </div>
+        <div class="footer">
+  <div class="footer-wrapper">
+    <div class="copyright">
+      
+      <span>&copy;</span>
+      
+      <span>2017 - 2019</span>
+      
+      <span class="author"><i class="fa fa-user"></i>John Doe</span>
+    </div>
+    
+      <span>Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> </span>
+    
+    
+      <span>|</span> <span>Theme - <a href="https://github.com/littleee/corazon">Corazon</a></span>
+      
+        <span>v1.0.0</span>
+      
+    
+  </div>
+</div>
+
+    </main>
+  </body>
+</html>

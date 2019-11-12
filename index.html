@@ -274,6 +274,43 @@
   
     <article class="post">
       <div class="post-meta">
+        <span class="post-time">2019-11-11</span>
+      </div>
+      <div class="post-title">
+        
+          <a class="post-title-link" href="/2019/11/11/eslipse配置数据库连接池/">
+            
+              eslipse配置数据库连接池
+            
+          </a>
+          
+        
+        <div class="post-tags">
+          
+        </div>
+      </div>
+      <div class="post-content">
+
+        
+
+        
+        <p>Tomcat6的服务器配置文件放在 ${tomcat6}/conf 目录底下。我们可以在这里找到 server.xml 和 context.xml。当然，还有其他一些资源文件。但是在在本文中我们只用得上这两个，其他的就不介绍了。 </p>
+<h2 id="1-添加jar包"><a href="#1-添加jar包" class="headerlink" title="1.添加jar包"></a>1.添加jar包</h2><p>首先，将数据库的驱动程序copy到tomcat8.0\lib下，这一部是关键，如果没有copy 当运行程序的时候后报-找不到驱动-的异常。</p>
+<h2 id="2-在context文件中添加"><a href="#2-在context文件中添加" class="headerlink" title="2.在context文件中添加"></a>2.在context文件中添加</h2><p>将下面的代码放到Tomcat 8.0\conf\context.xml中间，如：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;Context reloadable=<span class="string">"true"</span>&gt;</span><br><span class="line">&lt;Resource </span><br><span class="line">name=<span class="string">"jdbc/数据库名"</span></span><br><span class="line">type=<span class="string">"javax.sql.DataSource"</span></span><br><span class="line">maxActive=<span class="string">"100"</span></span><br><span class="line">maxIdle=<span class="string">"30"</span> </span><br><span class="line">maxWait=<span class="string">"5000"</span></span><br><span class="line">username=<span class="string">"用户名"</span></span><br><span class="line">password=<span class="string">"密码"</span></span><br><span class="line">driverClassName=<span class="string">"数据库的驱动"</span></span><br><span class="line">url=<span class="string">"数据库的连接地址"</span> /&gt;</span><br><span class="line">&lt;/Context&gt;</span><br></pre></td></tr></table></figure>
+
+<p>也可以在项目root下的WEB-INF下新建context.xml进行配置</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span><br><span class="line"></span><br><span class="line">&lt;Context&gt;<span class="comment">/////直连 </span></span><br><span class="line">&lt;Resource </span><br><span class="line">name=<span class="string">"jdbc/book"</span> </span><br><span class="line">type=<span class="string">"javax.sql.DataSource"</span> </span><br><span class="line">password=<span class="string">""</span></span><br><span class="line">driverClassName=<span class="string">"com.microsoft.jdbc.sqlserver.SQLServerDriver"</span></span><br><span class="line">maxIdle=<span class="string">"5"</span> </span><br><span class="line">maxWait=<span class="string">"5000"</span></span><br><span class="line">username=<span class="string">"sa"</span> </span><br><span class="line">url=<span class="string">"jdbc:microsoft:sqlserver://localhost:1433;databaseName=book"</span><span class="comment">////直连数据源 maxActive="10"/&gt; </span></span><br><span class="line">&lt;/Context&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-通过JNDI资源链接"><a href="#3-通过JNDI资源链接" class="headerlink" title="3.通过JNDI资源链接"></a>3.通过JNDI资源链接</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">InitialContext initCtx = <span class="keyword">new</span> InitialContext();</span><br><span class="line">DataSource ds = (DataSource)initCtx.lookup(<span class="string">"java:comp/env/jdbc/数据库名"</span>);</span><br><span class="line">Connection conn = ds.getConnection();</span><br></pre></td></tr></table></figure>
+
+
+        
+      </div>
+    </article>
+  
+    <article class="post">
+      <div class="post-meta">
         <span class="post-time">2019-11-05</span>
       </div>
       <div class="post-title">
@@ -658,6 +695,45 @@
   
     <article class="post">
       <div class="post-meta">
+        <span class="post-time">2019-11-03</span>
+      </div>
+      <div class="post-title">
+        
+          <a class="post-title-link" href="/2019/11/03/Android基本布局/">
+            
+              Android基本布局
+            
+          </a>
+          
+        
+        <div class="post-tags">
+          
+        </div>
+      </div>
+      <div class="post-content">
+
+        
+
+        
+        <h1 id="Android-基本布局"><a href="#Android-基本布局" class="headerlink" title="Android 基本布局"></a>Android 基本布局</h1><h3 id="基本理论"><a href="#基本理论" class="headerlink" title="基本理论"></a>基本理论</h3><p>Android六大基本布局分别是：线性布局LinearLayout、表格布局TableLayout、相对布局RelativeLayout、<br>层布局FrameLayout、绝对布局AbsoluteLayout、网格布局GridLayout。<br>其中，表格布局是线性布局的子类。网格布局是android 4.0后新增的布局。<br>在手机程序设计中，绝对布局基本上不用，用得相对较多的是线性布局和相对布局。</p>
+<p>这篇文章主要讲线性布局和相对布局</p>
+<h4 id="1-线性布局"><a href="#1-线性布局" class="headerlink" title="1.线性布局"></a>1.线性布局</h4><p>线性布局在开发中使用最多，具有垂直方向与水平方向的布局方式，通过设置属性“android:orientation”控制方向，属性值垂直（vertical）和水平(horizontal)，默认水平方向。</p>
+<h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><p>android:gravity：内部控件对齐方式，常用属性值有center、center_vertical、center_horizontal、top、bottom、left、right等。</p>
+<p>这个属性在布局组件RelativeLayout、TableLayout中也有使用，FrameLayout、AbsoluteLayout则没有这个属性。</p>
+<p>center：居中显示，这里并不是表示显示在LinearLayout的中心，当LinearLayout线性方向为垂直方向时，center表示水平居中，但是并不能垂直居中，此时等同于center_horizontal的作用；同样当线性方向为水平方向时，center表示垂直居中，等同于center_vertical。</p>
+<p>top、bottom、left、right顾名思义为内部控件居顶、低、左、右布局。<br>这里要与android:layout_gravity区分开，layout_gravity是用来设置自身相对于父元素的布局。</p>
+<p>android:layout_weight：权重，用来分配当前控件在剩余空间的大小。使用权重一般要把分配该权重方向的长度设置为零，比如在水平方向分配权重，就把width设置为零。</p>
+<h3 id="2-相对布局"><a href="#2-相对布局" class="headerlink" title="2.相对布局"></a>2.相对布局</h3><p>相对布局可以让子控件相对于兄弟控件或父控件进行布局，可以设置子控件相对于兄弟控件或父控件进行上下左右对齐。<br>RelativeLayout能替换一些嵌套视图，当我们用LinearLayout来实现一个简单的布局但又使用了过多的嵌套时，就可以考虑使用RelativeLayout重新布局。<br>相对布局就是一定要加Id才能管理。</p>
+<h4 id="RelativeLayout中子控件常用属性："><a href="#RelativeLayout中子控件常用属性：" class="headerlink" title="RelativeLayout中子控件常用属性："></a>RelativeLayout中子控件常用属性：</h4><p>1、相对于父控件，例如：android:layout_alignParentTop=“true”<br>android:layout_alignParentTop   控件的顶部与父控件的顶部对齐;<br>android:layout_alignParentBottom 控件的底部与父控件的底部对齐;<br>android:layout_alignParentLeft   控件的左部与父控件的左部对齐;<br>android:layout_alignParentRight   控件的右部与父控件的右部对齐;</p>
+<p>2、相对给定Id控件，例如：android:layout_above=“@id/**”<br>android:layout_above 控件的底部置于给定ID的控件之上;<br>android:layout_below   控件的底部置于给定ID的控件之下;<br>android:layout_toLeftOf  控件的右边缘与给定ID的控件左边缘对齐;<br>android:layout_toRightOf 控件的左边缘与给定ID的控件右边缘对齐;<br>android:layout_alignBaseline 控件的baseline与给定ID的baseline对齐;<br>android:layout_alignTop    控件的顶部边缘与给定ID的顶部边缘对齐;<br>android:layout_alignBottom  控件的底部边缘与给定ID的底部边缘对齐;<br>android:layout_alignLeft    控件的左边缘与给定ID的左边缘对齐;<br>android:layout_alignRight   控件的右边缘与给定ID的右边缘对齐;</p>
+<p>3、居中，例如：android:layout_centerInParent=“true”<br>android:layout_centerHorizontal 水平居中;<br>android:layout_centerVertical  垂直居中;<br>android:layout_centerInParent 父控件的中央;</p>
+
+        
+      </div>
+    </article>
+  
+    <article class="post">
+      <div class="post-meta">
         <span class="post-time">2019-10-31</span>
       </div>
       <div class="post-title">
@@ -931,347 +1007,11 @@
       </div>
     </article>
   
-    <article class="post">
-      <div class="post-meta">
-        <span class="post-time">2019-10-16</span>
-      </div>
-      <div class="post-title">
-        
-          <a class="post-title-link" href="/2019/10/16/MySQL总结/">
-            
-              MySQL总结
-            
-          </a>
-          
-        
-        <div class="post-tags">
-          
-        </div>
-      </div>
-      <div class="post-content">
-
-        
-
-        
-        <h1 id="MySQL总结"><a href="#MySQL总结" class="headerlink" title="MySQL总结"></a>MySQL总结</h1><h4 id="第1章，MySQL基础"><a href="#第1章，MySQL基础" class="headerlink" title="第1章，MySQL基础"></a>第1章，MySQL基础</h4><img src="C:\Users\胡文园\Desktop\MYSQL.png" style="zoom:80%;">
-
-
-
-<h6 id="1，数据库编码不区分大小写，通常数据库内置的关键词大写，自定义的小写。"><a href="#1，数据库编码不区分大小写，通常数据库内置的关键词大写，自定义的小写。" class="headerlink" title="1，数据库编码不区分大小写，通常数据库内置的关键词大写，自定义的小写。"></a>1，数据库编码不区分大小写，通常数据库内置的关键词大写，自定义的小写。</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE stuinfo(stuno INT,name VARCHAR(255));</span><br></pre></td></tr></table></figure>
-
-<h6 id="2-专有名词：数据库，数据表，记录（一行数据-record），字段（一列数据field）。"><a href="#2-专有名词：数据库，数据表，记录（一行数据-record），字段（一列数据field）。" class="headerlink" title="2.专有名词：数据库，数据表，记录（一行数据 record），字段（一列数据field）。"></a>2.专有名词：数据库，数据表，记录（一行数据 record），字段（一列数据field）。</h6><h6 id="3-修改表结构"><a href="#3-修改表结构" class="headerlink" title="3.修改表结构"></a>3.修改表结构</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名+动作</span><br></pre></td></tr></table></figure>
-
-<h5 id="动作："><a href="#动作：" class="headerlink" title="动作："></a>动作：</h5><p>修改表名：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 rename 新表名</span><br></pre></td></tr></table></figure>
-
-<p>修改字段类型：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 modify 字段名 新类型</span><br></pre></td></tr></table></figure>
-
-<p>修改字段名字：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 change 老字段名 新字段名 新类型</span><br></pre></td></tr></table></figure>
-
-<p>添加字段：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 add 新字段名 新字段类型</span><br></pre></td></tr></table></figure>
-
-<p>删除字段：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 drop 字段名</span><br></pre></td></tr></table></figure>
-
-<p>创建数据库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database 数据库名</span><br></pre></td></tr></table></figure>
-
-<p>eg：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">create database schooldb;</span><br><span class="line">use schooldb;</span><br></pre></td></tr></table></figure>
-
-<p>创建数据表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create table 表名；</span><br></pre></td></tr></table></figure>
-
-<p>eg:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create table 表名 (stuno int,name varchar(255));</span><br></pre></td></tr></table></figure>
-
-<p>显示stuinfo的结构信息，显示stuinfo的创建信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">desc stuinfo;</span><br><span class="line">show create table stuinfo;</span><br></pre></td></tr></table></figure>
-
-<p>修改表名stuinfo为stuinfo18；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table stuinfo rename stuinfo18;</span><br></pre></td></tr></table></figure>
-
-<p>修改姓名字段name 类型为字符串（4）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table stuinfo modify name varchar(4);</span><br></pre></td></tr></table></figure>
-
-<p>修改姓名字段name名称为stuname</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table stuinfo change name stuname varchar(4);</span><br></pre></td></tr></table></figure>
-
-<p>添加地址字段address 类型为字符串(255)；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 add address varchar(255);</span><br></pre></td></tr></table></figure>
-
-<p>删除地址字段</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 drop address;</span><br></pre></td></tr></table></figure>
-
-<p>删除学生信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop table 表名</span><br></pre></td></tr></table></figure>
-
-<h2 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2><h6 id="1，数据约束：主键，外键，非空，默认，唯一。"><a href="#1，数据约束：主键，外键，非空，默认，唯一。" class="headerlink" title="1，数据约束：主键，外键，非空，默认，唯一。"></a>1，数据约束：主键，外键，非空，默认，唯一。</h6><p>（1，主键：primary key 写在字段类型后面。</p>
-<p>​         主键特性：非空且唯一</p>
-<p>​         主键自增：auto_increment写在字段类型后面，主键前面</p>
-<p>​                           …… auto_increment primary key;</p>
-<p>(2,外键：从表的外键，必须在主表的主键中出现</p>
-<p>​               写在创建语句后面</p>
-<p>​           foreign  key  (字段名)  references  主表名  (字段名);</p>
-<p>eg:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create table 表名(id int auto_increment pri mary key,stuno int,score float,foreign key (stuno) references stuinfo (stuno));</span><br></pre></td></tr></table></figure>
-
-<p>（3,非空：not null写在字段类型后面</p>
-<p>（4,默认： default默认值，如果默认值是字符的，需要将字符加单引号。</p>
-<p>（5， 唯一：unique 写在字段类型后面</p>
-<h4 id="2，数据库设计规范"><a href="#2，数据库设计规范" class="headerlink" title="2，数据库设计规范"></a>2，数据库设计规范</h4><p>INF  ：一范式数据字段，具有原子性，不可再分。</p>
-<p>2INF ：二范式所有字段要和主键相关（要有主键）。</p>
-<p>2INF ：三范式所有字段要和主键直接相关（要有外键，分表）。</p>
-<p><font color="red">注意<font></font></font></p>
-<h2 id="第三章数据增删改"><a href="#第三章数据增删改" class="headerlink" title="第三章数据增删改"></a>第三章数据增删改</h2><p>1，数据插入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into 表名(字段1，字段2，...) values(值1，值2...);</span><br></pre></td></tr></table></figure>
-
-<p>eg:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into 表名（id,stuno,name,age） values(&apos;01&apos;,&apos;张三&apos;,17);</span><br></pre></td></tr></table></figure>
-
-<p>2，最简单的查询语句</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from 表名;</span><br></pre></td></tr></table></figure>
-
-<p><font color="red">注意<font>:注意：主键自增，只增不减。</font></font></p>
-<p>3简写形式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">insert 表名（字段1，字段2...） values(值1，值2...);</span><br></pre></td></tr></table></figure>
-
-<p>4，最精简形式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert 表名 values（值1，值2...）;</span><br></pre></td></tr></table></figure>
-
-<p>eg:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert 表名 values(20,&apos;aaa&apos;,12)；</span><br></pre></td></tr></table></figure>
-
-<p>5，一次插入的多行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into 表名（字段1，字段2，....） values（值1，值2,...）,(值1，值2,...);</span><br></pre></td></tr></table></figure>
-
-<p>6，运算符</p>
-<p> 比较运算符 =<br> 逻辑运算符 “&amp;&amp;”，“||”，“！”或and，or，！；<br>not null 住址！=‘洛阳’;</p>
-<p>7,更新语句</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">语法：update 表名 set 字段1=值1，字段2=值2，....where 条件;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">eg:update 表名 set nation=&apos;蒙古族&apos;,where id=1;</span><br></pre></td></tr></table></figure>
-
-<p>8,删除语句，有外键约束的，先删从表，再删主表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from 表名 where 条件；</span><br></pre></td></tr></table></figure>
-
-<p>9，清空表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">truncate table 表名；</span><br></pre></td></tr></table></figure>
-
-<p>truncate和delete的区别<br>（1），truncate 将清空日志，数据不可恢复；<br>（2），truncate将重置自增列<br>（3），truncate不可清空有外键约束的表</p>
-<h2 id="第四章-数据查询"><a href="#第四章-数据查询" class="headerlink" title="第四章 数据查询"></a>第四章 数据查询</h2><p>1，select 字段1，字段2，….from 表名  where  条件  order by 字段1，字段2，…limit 数字1，数字2</p>
-<p>使用 * 作为通配符，表示所有字段。</p>
-<p>2,查看表格</p>
-<p>eg：（1），select * from 表名；即可实现<br>（2），select name,nation,class from 表名;</p>
-<p>3,使用as 关键词，进行字段重命名，都是临时的重命名，只对本次有效。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select name as 姓名，nation as 民族 from 表名；</span><br></pre></td></tr></table></figure>
-
-<p>3,永久性重命名字段（第二章内容）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 change 旧字段名 新字段名 字段类型；</span><br></pre></td></tr></table></figure>
-
-<p>4,按条件查询信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from 表名 where class=&apos;移动1班&apos; and gender=&apos;女&apos;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from 表名 where class=&apos;移动1班&apos;and (nation=‘汉族’ or nation=‘朝鲜族’);</span><br></pre></td></tr></table></figure>
-
-<p>8,使用distinct 关键词，查询不重复的记录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select distinct nation from 表名;</span><br></pre></td></tr></table></figure>
-
-<p>9,排序</p>
-<p>逻辑运算的优先级是非与或 ！ and or;<br>使用order by 关键词进行排序；<br>order by 字段 asc/desc<br>asc表示升序，可以省略，   desc 表示降序。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eg：select * from 表名 order by score;升序。</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from 表名 order by score desc;降序</span><br></pre></td></tr></table></figure>
-
-<p>10,取前3名学生成绩</p>
-<p>使用limit关键词，限制行数</p>
-<p>limit n,m  从n+1行开始取，取m行，limit m，相当于limit 0，m，从0行计数。</p>
-<p>11，函数</p>
-<p>（1）rand（） 取0-1之间的随机数，取不到0和1.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">语法：select  rand（）；</span><br></pre></td></tr></table></figure>
-
-<p>（2）ceil （）向上取整<br>     floor（）向下取整；<br>  ceil（rand（）<em>43）；<br>eg：select ceil （rand（）</em>43）；</p>
-
-        
-      </div>
-    </article>
-  
-    <article class="post">
-      <div class="post-meta">
-        <span class="post-time">2019-10-14</span>
-      </div>
-      <div class="post-title">
-        
-          <a class="post-title-link" href="/2019/10/14/Java总结/">
-            
-              Untitled
-            
-          </a>
-          
-        
-        <div class="post-tags">
-          
-        </div>
-      </div>
-      <div class="post-content">
-
-        
-
-        
-        <h1 id="Java总结"><a href="#Java总结" class="headerlink" title="Java总结"></a>Java总结</h1><h3 id="第二章面向对象"><a href="#第二章面向对象" class="headerlink" title="第二章面向对象"></a>第二章面向对象</h3><p>1.面向对象：面向对象是一种思想，把一件事或一个项目分成更小的部分，每部分负责哪方面的功能。</p>
-<p>eg：假如你让我去开门，你不用管我用什么方法打开，你只需看到结果就行。</p>
-<p>2.类的创建</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span>+类名</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>eg：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;代码块&#125;</span><br></pre></td></tr></table></figure>
-
-<p>3.方法的创建：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> +方法名()&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>eg：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">go</span><span class="params">()</span></span>&#123;</span><br><span class="line">System.out.printlb(<span class="string">"跑"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>4.对象的创建：类名  对象名=new  类名（）；</p>
-<p>eg：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Car c=<span class="keyword">new</span> Car();</span><br></pre></td></tr></table></figure>
-
-<p>调用属性：对象名.属性=“  ”;</p>
-<p>调用方法：对象名.方法名（）;</p>
-<p>5.构造方法：方法名和类名相同，没有返回值。</p>
-<p>语法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> +类名（）；</span><br></pre></td></tr></table></figure>
-
-<p>作用：（1）创建对象时执行一些初始化操作。</p>
-<p>​            （2）子类继承父类时，执行构造方法。</p>
-<p>6.重载：方法名相同，参数不同。</p>
-<p>7.static：可以修饰属性，方法，代码块，被static修饰的成员属于整个类所有，而不是某个对象所有，即被类的所有对象所共享，并且只有一份。</p>
-<p>静态成员的访问方法：&lt;类名&gt;.&lt;成员&gt;</p>
-<p>eg：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="注意：在静态方法中不能直接调用非静态成员（方法和属性），非静态可以直接访问静态成员。"><a href="#注意：在静态方法中不能直接调用非静态成员（方法和属性），非静态可以直接访问静态成员。" class="headerlink" title="注意：在静态方法中不能直接调用非静态成员（方法和属性），非静态可以直接访问静态成员。"></a>注意：在静态方法中不能直接调用非静态成员（方法和属性），非静态可以直接访问静态成员。</h4><p>eg：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Peerson</span></span>&#123;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> counter=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> age;</span><br><span class="line"><span class="keyword">public</span> String name;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">()</span></span>&#123;</span><br><span class="line">++counter;</span><br><span class="line">++age;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">System.out.println(<span class="string">"static method"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span></span>&#123;</span><br><span class="line">System.out.println(<span class="string">"age="</span>+age);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String [] args)</span></span>&#123;</span><br><span class="line">实列化对象：Person p=<span class="keyword">new</span> Person();</span><br><span class="line">p.say();</span><br><span class="line">System.out.println(<span class="string">"Person.counter"</span>+Person.counter);</span><br><span class="line">Person p2=<span class="keyword">new</span> Person();</span><br><span class="line">p2.say();</span><br><span class="line">System.out.println(<span class="string">"Person.counter"</span>+Person.counter)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="第三章封装"><a href="#第三章封装" class="headerlink" title="第三章封装"></a>第三章封装</h2><p>1.封装：将对象的状态信息隐藏在对象内部，不允许外部类直接调用内部信息。</p>
-<p>2好处：提高代码的安全性，准确性，复用性，隐藏了实际细节。</p>
-<p>3步骤：(1)将属性私有化private</p>
-<p>​              (2)定义public公共的get，set方法。</p>
-<p>​               (3)最后调用get ,set方法。</p>
-<p>4.作用：（1）防止错误操作</p>
-<p>​                （2）安全性</p>
-<p>5修饰符：</p>
-<table>
-<thead>
-<tr>
-<th>修饰符</th>
-<th>同一个类</th>
-<th>同一个包</th>
-<th>子类</th>
-<th>所有类</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>private</td>
-<td>*</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>default</td>
-<td>*</td>
-<td>*</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>protected</td>
-<td>*</td>
-<td>*</td>
-<td>*</td>
-<td></td>
-</tr>
-<tr>
-<td>public</td>
-<td>*</td>
-<td>*</td>
-<td>*</td>
-<td>*</td>
-</tr>
-</tbody></table>
-<h2 id="第四章继承"><a href="#第四章继承" class="headerlink" title="第四章继承"></a>第四章继承</h2><p>1.继承：子承父业，多个类中存在相同的属性和方法时，在另一个类中不需再写这些属性和方法，可直接继承那一个类即可。</p>
-<p>2语法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 类名 <span class="keyword">extends</span> 父接口</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h6 id="注意：子类可以继承非私有的所有属性和方法"><a href="#注意：子类可以继承非私有的所有属性和方法" class="headerlink" title="注意：子类可以继承非私有的所有属性和方法"></a>注意：子类可以继承非私有的所有属性和方法</h6><h6 id="只能继承一个父类，但允许多层继承"><a href="#只能继承一个父类，但允许多层继承" class="headerlink" title="只能继承一个父类，但允许多层继承"></a>只能继承一个父类，但允许多层继承</h6><p>4.继承中的构造发方法：</p>
-<p>super调用父类的对象以及构造方法</p>
-<p>调用构造方法：super （）；</p>
-<p>5.重写:发生在父类和子类中，方法名相同，参数相同，方法体不同。</p>
-<p>eg：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Anmail</span></span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">shout</span><span class="params">()</span></span>&#123;</span><br><span class="line">System.out.println(<span class="string">"动物发出叫声"</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>语法：void 方法名  （）{}；</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">shout</span><span class="params">()</span></span>&#123;</span><br><span class="line">System.out.println(<span class="string">"小猫喵喵叫"</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h6 id="6-继承的好处"><a href="#6-继承的好处" class="headerlink" title="6.继承的好处"></a>6.继承的好处</h6><p>（1.主要解决代码重复问题</p>
-<p>(2.提高代码扩展性。</p>
-<h6 id="7-注意"><a href="#7-注意" class="headerlink" title="7.注意"></a>7.注意</h6><p>子类重写父类的方法时，不能使用比父类中被重写的方法更严格的访问权限，重写方法和被重写的方法必须具有相同的方法名，相同的参数列表和相同的返回值类型，重写方法的访问修饰符必须大于被重写方法的访问修饰符，否则不能称为方法的重写。</p>
-<h2 id="第五章-多态"><a href="#第五章-多态" class="headerlink" title="第五章  多态"></a>第五章  多态</h2><h6 id="1-多态："><a href="#1-多态：" class="headerlink" title="1.多态："></a>1.多态：</h6><p>同一个对象表现出的多种形态。</p>
-<h6 id="2-前提"><a href="#2-前提" class="headerlink" title="2.前提"></a>2.前提</h6><p>（1.继承</p>
-<p>（2.重写</p>
-<p>（3.父类引用指向子类对象</p>
-<h6 id="3-好处"><a href="#3-好处" class="headerlink" title="3.好处"></a>3.好处</h6><p>替换性，扩充性，接口性，灵活性，简化性。</p>
-<h6 id="4-向上转型"><a href="#4-向上转型" class="headerlink" title="4.向上转型"></a>4.向上转型</h6><p>基于：继承</p>
-<p>语法：&lt;父类型&gt; &lt;引用变量名&gt;=new &lt;子类型&gt;  (  );</p>
-<p>eg:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Father</span></span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">shout</span><span class="params">()</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span> <span class="title">Father</span></span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">shout</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">Father f=<span class="keyword">new</span> Son();</span><br><span class="line">f.shout();</span><br><span class="line">Father f=<span class="keyword">new</span> Son();</span><br><span class="line">Son s=(Son) f;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="第六章-抽象"><a href="#第六章-抽象" class="headerlink" title="第六章  抽象"></a>第六章  抽象</h2><h6 id="1-抽象"><a href="#1-抽象" class="headerlink" title="1.抽象"></a>1.抽象</h6><p>一个类没有足够的信息去描述一个具体的对象。</p>
-<h6 id="2-关键字"><a href="#2-关键字" class="headerlink" title="2.关键字"></a>2.关键字</h6><p>abstract</p>
-<p>可以修饰类，可以修饰方法</p>
-<h6 id="3-抽象的用法"><a href="#3-抽象的用法" class="headerlink" title="3.抽象的用法"></a>3.抽象的用法</h6><p>//抽象类</p>
-<ul>
-<li>public abstract class 类名{</li>
-<li>//抽象方法没有方法体</li>
-<li>public abstract void 方法名();    </li>
-<li>}</li>
-<li>//当父类是抽象类的时候，子类必须重写父类里面的抽象方法</li>
-</ul>
-<h6 id="4-抽象作用"><a href="#4-抽象作用" class="headerlink" title="4.抽象作用"></a>4.抽象作用</h6><p>用于继承的，比普通类更通用。</p>
-<h6 id="5-final修饰符：最终的"><a href="#5-final修饰符：最终的" class="headerlink" title="5.final修饰符：最终的"></a>5.final修饰符：最终的</h6><p>修饰变量，修饰方法，修饰类</p>
-<ul>
-<li>1.当修饰变量时，变量转换成常量，常量的值不能改变</li>
-<li>final int a=18;//a=18;不能改变,必须给一个初始值</li>
-<li>2.当修饰方法时，该方法不能被重写</li>
-<li>3.当修饰类时，该类不能被继承</li>
-</ul>
-<h2 id="第七章-接口"><a href="#第七章-接口" class="headerlink" title="第七章   接口"></a>第七章   接口</h2><h6 id="1，接口"><a href="#1，接口" class="headerlink" title="1，接口"></a>1，接口</h6><h6 id="2，接口的关键字"><a href="#2，接口的关键字" class="headerlink" title="2，接口的关键字"></a>2，接口的关键字</h6><p>interface</p>
-<h6 id="3，接口的语法"><a href="#3，接口的语法" class="headerlink" title="3，接口的语法"></a>3，接口的语法</h6><p>public interface 接口名{}</p>
-<p>File—&gt;new—&gt;interface//创建接口</p>
-<h6 id="4，接口的用法"><a href="#4，接口的用法" class="headerlink" title="4，接口的用法"></a>4，接口的用法</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">实现接口的关键字  implements</span><br><span class="line"> * 		<span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> 接口名</span>&#123;</span><br><span class="line"> * 			<span class="comment">//接口是纯抽象类</span></span><br><span class="line"> * 			<span class="comment">//接口里面的方法都是抽象方法</span></span><br><span class="line"> * 			<span class="function"><span class="keyword">void</span> <span class="title">setData</span><span class="params">()</span></span>;</span><br><span class="line"> * 		&#125;</span><br><span class="line"> * 		<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Play</span> <span class="keyword">implements</span> 接口名</span>&#123;</span><br><span class="line"> * 			<span class="meta">@Override</span></span><br><span class="line"> * 			<span class="function"><span class="keyword">void</span> <span class="title">setData</span><span class="params">()</span></span>&#123;</span><br><span class="line"> * 			&#125;</span><br><span class="line"> *		&#125;</span><br><span class="line"> * 		<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"> * 			<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"> * 				Play play=<span class="keyword">new</span> Play();</span><br><span class="line"> * 				play.setData();</span><br><span class="line"> * 			&#125;</span><br><span class="line"> * 		&#125;</span><br><span class="line"> * 		注意接口可以进行多继承</span><br><span class="line"> * 		<span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> 接口名 <span class="keyword">extends</span> 接口名，接口名</span>&#123;&#125;</span><br><span class="line"> * 		一般用法</span><br><span class="line"> * 		<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 类名 <span class="keyword">extends</span> 父类 <span class="keyword">implements</span> 接口，接口</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="第八章-集合框架"><a href="#第八章-集合框架" class="headerlink" title="第八章  集合框架"></a>第八章  集合框架</h2><h6 id="1-ArrayList"><a href="#1-ArrayList" class="headerlink" title="1.ArrayList"></a>1.ArrayList</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.用法</span><br><span class="line"> * 		ArrayList list=<span class="keyword">new</span> ArrayList();</span><br><span class="line"> * 		list.add();<span class="comment">//添加数据</span></span><br><span class="line"> * 		list.get();<span class="comment">//获取数据</span></span><br></pre></td></tr></table></figure>
-
-<h6 id="2-Map"><a href="#2-Map" class="headerlink" title="2.Map"></a>2.Map</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">用法</span><br><span class="line"> * 		Map map=<span class="keyword">new</span> HasMap();</span><br><span class="line"> * 		map.put(key,value);<span class="comment">//key不能重复</span></span><br><span class="line"> * 		map.get(key);<span class="comment">//获取key对象的value</span></span><br></pre></td></tr></table></figure>
-
-<h6 id="3-泛型"><a href="#3-泛型" class="headerlink" title="3,泛型"></a>3,泛型</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;String&gt; list=<span class="keyword">new</span> ArrayList&gt;&lt;String&gt;();</span><br><span class="line"> * 		Map&lt;String,String&gt; map=<span class="keyword">new</span> HasMap&lt;String,String&gt;();</span><br><span class="line"> * 		ArrayList&lt;Map&lt;String,String&gt;&gt; list=<span class="keyword">new</span> ArrayList&gt;&lt;Map&lt;String,String&gt;&gt;();</span><br><span class="line"> *</span><br></pre></td></tr></table></figure>
-
-
-        
-      </div>
-    </article>
-  
 </section>
+
+  <nav class="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next</a>
+  </nav>
 
 
 
